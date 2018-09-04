@@ -23,9 +23,9 @@
     $(() => {
         $("#send").click(()=>{
             var message = { name: $("#name").val(),message: $("#message").val()}
-            postMessages(message);
+            postMessage(message);
         })
-        getMessages()
+        getMessage()
     })
 
     socket.on('message',addMessage)
@@ -36,13 +36,13 @@
         $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message}</p>`)
     }
 
-    function getMessages(){
+    function getMessage(){
         $.get('http://localhost:3000/messages',(data) => {
-            data.forEach(addMessages);
+            data.forEach(addMessage);
         })
     }
 
-        function postMessages(message){
+        function postMessage(message){
         $.post('http://localhost:3000/messages', message)
     }
 </script>
