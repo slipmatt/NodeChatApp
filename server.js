@@ -17,6 +17,15 @@ var Message = mongoose.model('Message',{
 })
 
 
+app.get('/messages/:user', (req,res) => {
+    var user = req.params.user
+    Message.find({name: user}, (err, messages) => {
+        console.log(err)
+        console.log(messages)
+        res.send(messages)
+    })
+})
+
 app.get('/messages', (req,res) => {
     Message.find({}, (err, messages) => {
         console.log(err)
